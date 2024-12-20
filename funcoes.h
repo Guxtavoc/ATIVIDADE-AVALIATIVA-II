@@ -7,3 +7,5 @@ no *criarNo(char nomePresente[], char Loja[], char nomePessoa[], char dataCompra
 void inserir(no **lista);
 void excluir(no **lista, char nomePresente[]);
 void imprimir(no *lista);
+void exlcuirLista(no **lista);
+void imprimirDebug(no *lista);//Função de debug, excluir assim que possivel!!!

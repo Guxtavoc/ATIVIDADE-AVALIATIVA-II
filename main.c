@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "menu.h"
-//#include "funcoes.h"
-
 int main(){
-    printf("Bem vind@, ao sistema de gerenciamento presentes!");
+    printf("Bem vind@, ao sistema de gerenciamento presentes!\n");
     no *lista=NULL;
-    menu(lista);
+    menu(&lista);
+    exlcuirLista(&lista);
     return 0;
 }

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "funcoes.h"
-void menu(no *lista){
+void menu(no **lista){
     int op;
     char nomePresente[20];
     do{
@@ -10,15 +10,15 @@ void menu(no *lista){
         scanf("%d",&op);
         switch (op){
         case 1:
-            inserir(&lista);
+            inserir(lista);
             break;
         case 2:
                 printf("Digite o nome do presente para Retirar da lista: ");
                 scanf("%s", nomePresente);
-                excluir(&lista, nomePresente);
+                excluir(lista, nomePresente);
             break;
         case 3:
-            imprimir(lista);
+            imprimir(*lista);
             break;
         case 4:
             break;

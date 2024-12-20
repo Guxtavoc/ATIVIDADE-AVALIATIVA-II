@@ -1,2 +1,2 @@
 #include "funcoes.h"
-void menu(no *lista);
+void menu(no **lista);
