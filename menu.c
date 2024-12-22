@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "funcoes.h"
+#include "funcoesLista.h"
+#include "funcoesApp.h"
 void menuEdicao(no *lista){
     int op;
     do{
@@ -25,7 +26,7 @@ void menuEdicao(no *lista){
 void menuListagem(no *lista){
     int op;
     do{
-        printf("1 - Para listar presentes ate determinada data\n2 - Para listar presentes nao ganhos\n0 - Retornar ao menu principal\n");
+        printf("1 - Para listar presentes ate determinada data\n2 - Para listar presentes nao ganhos\n3 - Listar todos os presentes\n0 - Retornar ao menu principal\n");
         printf("digite a opcao que deseja: ");
         scanf("%d",&op);
         switch(op){
@@ -34,6 +35,9 @@ void menuListagem(no *lista){
             break;
         case 2:
             listarStatus(lista);
+            break;
+        case 3:
+            imprimir(lista);
             break;
         case 0:
             printf("Retornando ao menu princial...\n");     
@@ -60,7 +64,6 @@ void menu(no **lista){
             break;
         case 3:
             menuListagem(*lista);
-            //imprimir(*lista);
             break;
         case 4:
             menuEdicao(*lista);
