@@ -21,8 +21,28 @@ void menuEdicao(no *lista){
             break;
         }
     }while(op!=0);
-        
-    
+}
+void menuListagem(no *lista){
+    int op;
+    do{
+        printf("1 - Para listar presentes ate determinada data\n2 - Para listar presentes nao ganhos\n0 - Retornar ao menu principal\n");
+        printf("digite a opcao que deseja: ");
+        scanf("%d",&op);
+        switch(op){
+        case 1:
+            listarData(lista);
+            break;
+        case 2:
+            listarStatus(lista);
+            break;
+        case 0:
+            printf("Retornando ao menu princial...\n");     
+            break;
+        default:
+            printf("Opcao invalida! Por favor tente novamente\n");
+            break;
+        }
+    }while(op!=0);
 }
 void menu(no **lista){
     int op;
@@ -39,7 +59,8 @@ void menu(no **lista){
             excluir(lista);
             break;
         case 3:
-            imprimir(*lista);
+            menuListagem(*lista);
+            //imprimir(*lista);
             break;
         case 4:
             menuEdicao(*lista);

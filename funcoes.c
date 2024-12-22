@@ -59,21 +59,6 @@ void excluir(no **lista){
     prev->proximo=temp->proximo;
     free(temp);
 }
-void imprimir(no *lista){
-    if (lista==NULL) {
-        printf("Lista vazia!\n");
-        return;
-    }
-    no *atual=lista;
-    while(atual!=NULL){
-        if(atual->status==1){
-            printf("Presente: %s, Loja: %s, Presenteador: %s, Data da entrega: %s, Valor: R$%.2f\n",atual->nomePresente,atual->Loja,atual->nomePessoa,atual->dataCompra,atual->valor);
-        }else{
-            printf("Presente: %s, Loja: %s, Valor: R$%.2f\n",atual->nomePresente,atual->Loja,atual->valor);
-        }
-        atual=atual->proximo;
-    }
-}
 void exlcuirLista(no **lista){
     while(*lista!=NULL) {
         no* temp=*lista;
@@ -202,4 +187,41 @@ void buscar(no *lista){
         }else{
             printf("Presente: %s, Loja: %s, Valor: R$%.2f\n",atual->nomePresente,atual->Loja,atual->valor);
         }
+}
+void listarData(no *lista){
+    if(lista==NULL){
+        printf("Lista vazia!\n");
+        return;
+    }
+    char dataLimite[10];
+    printf("Digite a data limite (DD/MM/AAAA): ");
+    scanf("%10s",dataLimite);
+    printf("Listando presentes ganhos ate a data %s:\n",dataLimite);
+    int encontrou=0;
+    no *atual=lista;
+    while(atual!=NULL){
+        if(strcmp(atual->dataCompra,dataLimite)<=0&&atual->status==1){
+            if(atual->status==1){
+                printf("Presente: %s, Loja: %s, Presenteador: %s, Data da entrega: %s, Valor: R$%.2f\n",atual->nomePresente,atual->Loja,atual->nomePessoa,atual->dataCompra,atual->valor);
+            }else{
+                printf("Presente: %s, Loja: %s, Valor: R$%.2f\n",atual->nomePresente,atual->Loja,atual->valor);
+            }
+            encontrou=1;
+        }
+        atual=atual->proximo;
+    }
+    if(encontrou==0)
+        printf("Nenhum presente foi ganho ate a data %s.\n",dataLimite);
+}
+void listarStatus(no *lista){
+    if (lista==NULL) {
+        printf("Lista vazia!\n");
+        return;
+    }
+    no *atual=lista;
+    while(atual!=NULL){
+        if(atual->status==0)
+            printf("Presente: %s, Loja: %s, Valor: R$%.2f\n",atual->nomePresente,atual->Loja,atual->valor);
+        atual=atual->proximo;
+    }
 }
