@@ -24,7 +24,6 @@ void inserir(no **lista){
     if (*lista==NULL||strcmp(novo->nomePresente,(*lista)->nomePresente)<0){
         novo->proximo=*lista;
         *lista=novo;
-        imprimirDebug(*lista);//Debug
         return;
     }
     no* atual=*lista;
@@ -33,13 +32,15 @@ void inserir(no **lista){
     }
     novo->proximo=atual->proximo;
     atual->proximo=novo;
-    imprimirDebug(*lista);//Debug
 }
-void excluir(no **lista,char nomePresente[]){
+void excluir(no **lista){
+    char nomePresente[20];
     if (*lista==NULL) {
         printf("Lista vazia!\n");
         return;
     }
+    printf("Digite o nome do presente para Retirar da lista: ");
+    scanf("%s",nomePresente);
     no* temp=*lista;
     if (strcmp((*lista)->nomePresente,nomePresente)==0){
         *lista=(*lista)->proximo;
@@ -80,15 +81,6 @@ void exlcuirLista(no **lista){
         free(temp);
     }
 }
-void imprimirDebug(no *lista){//Função de debug, excluir assim que possivel!!!
-    no* atual=lista;
-    printf("Lista atual: ");
-    while (atual != NULL){
-        printf("%s -> ",atual->nomePresente);
-        atual = atual->proximo;
-    }
-    printf("NULL\n");
-}
 void atribuirPessoa(no *lista){
     if(lista==NULL){
         printf("Lista vazia!\n");
@@ -105,12 +97,16 @@ void atribuirPessoa(no *lista){
         printf("Presente '%s' nao encontrado na lista!\n",nomePresente);
         return;
     }
+    if(atual->status==1){
+        printf("Opa, parece que alguem ja comprou esse presente!\n");
+        printf("Caso tenha sido um erro, recomenda-se que exclua essa entrada!\n");
+        return;
+    }
     printf("Digite o nome da pessoa que presenteou: ");
     scanf("%s",atual->nomePessoa);
     printf("Digite a data do presente (DD/MM/AAAA): ");
-    scanf("%9s",atual->dataCompra);
+    scanf("%10s",atual->dataCompra);
     atual->status=1;
-    //printf("Atualização realizada com sucesso!\n");
 }
 void editarPresente(no *lista){
     char nomePresente[20];
@@ -184,4 +180,26 @@ void editarPresente(no *lista){
             break;
         }
     }while (op!=0);
+}
+void buscar(no *lista){
+    if(lista==NULL){
+        printf("Lista vazia!\n");
+        return;
+    }
+    char nomePresente[20];
+    printf("Digite o nome do presente que deseja atualizar: ");
+    scanf("%s",nomePresente);
+    no *atual=lista;
+    while(atual!=NULL&&strcmp(atual->nomePresente,nomePresente)!= 0){
+        atual=atual->proximo;
+    }
+    if(atual==NULL){
+        printf("Presente '%s' nao encontrado na lista!\n",nomePresente);
+        return;
+    }
+    if(atual->status==1){
+            printf("Presente: %s, Loja: %s, Presenteador: %s, Data da entrega: %s, Valor: R$%.2f\n",atual->nomePresente,atual->Loja,atual->nomePessoa,atual->dataCompra,atual->valor);
+        }else{
+            printf("Presente: %s, Loja: %s, Valor: R$%.2f\n",atual->nomePresente,atual->Loja,atual->valor);
+        }
 }

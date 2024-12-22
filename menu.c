@@ -26,7 +26,6 @@ void menuEdicao(no *lista){
 }
 void menu(no **lista){
     int op;
-    char nomePresente[20];
     do{
         printf("1 - Inserir presentes na lista\n2 - Retirar presentes da lista\n3 - Opcoes de listagem\n");
         printf("4 - Editar dados/status de um presente\n5 - Buscar presente\n0 - Encerrar Aplicacao\n");
@@ -36,10 +35,8 @@ void menu(no **lista){
         case 1:
             inserir(lista);
             break;
-        case 2:
-                printf("Digite o nome do presente para Retirar da lista: ");
-                scanf("%s", nomePresente);
-                excluir(lista, nomePresente);
+        case 2: 
+            excluir(lista);
             break;
         case 3:
             imprimir(*lista);
@@ -48,6 +45,7 @@ void menu(no **lista){
             menuEdicao(*lista);
             break;
         case 5:
+        buscar(*lista);
             break;
         case 0:
             printf("Encerrando aplicacao...\n");
